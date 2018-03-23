@@ -41,7 +41,7 @@ you'll need to `cd` into the directory that you cloned the repo into and run
 some quick tasks:
 
 ```
-cd <ngrx-store-effects-app>
+cd <ngxs-pizza-order>
 yarn install
 # OR
 npm install
