@@ -1,8 +1,8 @@
 <h1 align="center">
 <img width="40" valign="bottom" src="https://ultimateangular.com/assets/img/categories/ngrx.svg">
-NGRX: Store + Effects app
+NGXS: Angular State Management 
 </h1>
-<h4 align="center">Project seed app for our NGRX application using Angular, NGRX Store, Effects, Router Store.</h4>
+<h4 align="center">Ngxs for Angular ( origional :NGRX application using Angular, NGRX Store, Effects, Router Store).</h4>
 
 ---
 
@@ -41,7 +41,7 @@ you'll need to `cd` into the directory that you cloned the repo into and run
 some quick tasks:
 
 ```
-cd <ngrx-store-effects-app>
+cd <ngxs-pizza-order>
 yarn install
 # OR
 npm install
