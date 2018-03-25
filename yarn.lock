@@ -3081,9 +3081,11 @@ ngrx-store-freeze@^0.2.1:
   dependencies:
     deep-freeze-strict "^1.1.1"
 
-ngxs@ngxs/core:
-  version "2.0.0-rc.16"
-  resolved "https://codeload.github.com/ngxs/core/tar.gz/b98a8f34cd9e71c8dbf63ec239b7241a5d51034a"
+ngxs@^2.0.0-rc.18:
+  version "2.0.0-rc.18"
+  resolved "https://registry.yarnpkg.com/ngxs/-/ngxs-2.0.0-rc.18.tgz#6637f6f756266af2e443689f1cec7d257b8c87dd"
+  dependencies:
+    tslib "^1.7.1"
 
 no-case@^2.2.0:
   version "2.3.2"

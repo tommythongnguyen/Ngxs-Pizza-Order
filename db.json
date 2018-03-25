@@ -80,8 +80,12 @@
           "name": "mozzarella"
         },
         {
-          "id": 6,
-          "name": "mushroom"
+          "id": 2,
+          "name": "bacon"
+        },
+        {
+          "id": 12,
+          "name": "tomato"
         }
       ],
       "id": 4

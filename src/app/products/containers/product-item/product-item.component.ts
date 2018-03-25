@@ -36,8 +36,6 @@ export class ProductItemComponent implements OnInit {
 
   visualise$: Observable<Pizza>;
 
-  @Select(ToppingsState.selectedToppings)
-  selectedToppings$: Observable<number[]>;
   constructor(private store: Store) {}
   ngOnInit() {
     this.pizza$.pipe(

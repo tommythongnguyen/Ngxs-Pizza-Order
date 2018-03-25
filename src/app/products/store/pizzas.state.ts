@@ -1,4 +1,4 @@
-import { Action, Selector, State, StateContext } from 'ngxs';
+import { Action, Selector, State, StateContext, Store } from 'ngxs';
 import { of } from 'rxjs/observable/of';
 import { catchError, map } from 'rxjs/operators';
 
@@ -55,7 +55,7 @@ export class SelectedPizza {
 }
 
 // PizzaVisualized action
-export class SetVisualizedPizza {
+export class UpdatePizzaToppings {
   constructor(public readonly payload: Topping[]) {}
 }
 
@@ -79,7 +79,7 @@ export class PizzaStateModel {
   }
 })
 export class PizzasState {
-  constructor(private pizzaService: PizzasService) {}
+  constructor(private pizzaService: PizzasService, private store: Store) {}
   // ---- state selector----------
   @Selector()
   static pizzas(state: PizzaStateModel) {
@@ -268,5 +268,10 @@ export class PizzasState {
   @Action([RemovePizzaFail, UpdatePizzaFail, CreatePizzaFail])
   handlePizzaFail(sc: StateContext<PizzaStateModel>) {
     sc.patchState({ loading: false });
+  }
+
+  @Action(UpdatePizzaToppings)
+  updatePizzaToppings(sc: StateContext<PizzaStateModel>) {
+    // this.store.select()
   }
 }
