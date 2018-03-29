@@ -3,6 +3,7 @@ import { CanActivate } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+import { switchMap } from 'rxjs/operators';
 
 import { VisualiseToppings } from '../store/toppings.state';
 
@@ -10,7 +11,8 @@ import { VisualiseToppings } from '../store/toppings.state';
 export class VisualizeToppingsGuard implements CanActivate {
   constructor(private store: Store) {}
   canActivate(): Observable<boolean> {
-    this.store.dispatch(new VisualiseToppings([]));
-    return of(true);
+    return this.store
+      .dispatch(new VisualiseToppings([]))
+      .pipe(switchMap(() => of(true)));
   }
 }

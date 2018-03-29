@@ -46,7 +46,10 @@ export class ProductItemComponent implements OnInit {
           ? pizza.toppings.map(topping => topping.id)
           : [];
         if (pizzaExist) {
-          this.store.dispatch(new VisualiseToppings(toppingIds));
+          console.log('right here');
+          this.store
+            .dispatch(new VisualiseToppings(toppingIds))
+            .subscribe(val => console.log('whatever: '));
         }
       })
     );

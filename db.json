@@ -54,20 +54,12 @@
       "name": "Plain Ol' Pepperoni",
       "toppings": [
         {
-          "id": 10,
-          "name": "pepperoni"
+          "id": 3,
+          "name": "basil"
         },
         {
           "id": 2,
           "name": "bacon"
-        },
-        {
-          "id": 5,
-          "name": "mozzarella"
-        },
-        {
-          "id": 3,
-          "name": "basil"
         }
       ],
       "id": 3
