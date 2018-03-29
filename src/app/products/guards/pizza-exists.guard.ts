@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 import { filter, map, switchMap, take, tap } from 'rxjs/operators';
 
 import { Pizza } from '../models/pizza.model';
@@ -24,13 +25,14 @@ export class PizzaExistsGuards implements CanActivate {
 
   hasPizza(id: number): Observable<boolean> {
     return this.pizzas$.pipe(
-      map((pizzas: Pizza[]) => {
-        return pizzas.some(pizza => {
-          if (pizza.id === id) {
-            this.store.dispatch(new SelectedPizza(id));
-            return true;
-          }
-        });
+      map((pizzas: Pizza[]) => pizzas.find(pizza => pizza.id === id)),
+      switchMap(pizza => {
+        if (!!pizza) {
+          return this.store
+            .dispatch(new SelectedPizza(pizza.id))
+            .pipe(switchMap(() => of(true)));
+        }
+        return of(false);
       }),
       take(1)
     );

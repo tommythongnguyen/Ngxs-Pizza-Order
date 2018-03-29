@@ -40,13 +40,13 @@ export class ProductItemComponent implements OnInit {
   ngOnInit() {
     this.pizza$.pipe(
       tap((pizza: Pizza) => {
+        console.log('right here');
         // 'products/1'
         const pizzaExist = !!(pizza && pizza.toppings);
         const toppingIds = pizzaExist
           ? pizza.toppings.map(topping => topping.id)
           : [];
         if (pizzaExist) {
-          console.log('right here');
           this.store
             .dispatch(new VisualiseToppings(toppingIds))
             .subscribe(val => console.log('whatever: '));
@@ -59,6 +59,7 @@ export class ProductItemComponent implements OnInit {
 
   updateVisualizeToppings() {
     this.visualise$ = this.toppingIds$.pipe(
+      tap(() => console.log('my ida')),
       switchMap(ids =>
         this.toppings$.pipe(
           map((toppings: Topping[]) => {
