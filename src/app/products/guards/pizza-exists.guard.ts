@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
-import { Select, Store } from 'ngxs';
+import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs/Observable';
 import { filter, map, switchMap, take, tap } from 'rxjs/operators';
 

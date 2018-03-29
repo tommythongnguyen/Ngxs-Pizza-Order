@@ -106,6 +106,18 @@
     magic-string "^0.22.3"
     source-map "^0.5.6"
 
+"@ngxs/devtools-plugin@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ngxs/devtools-plugin/-/devtools-plugin-2.0.0.tgz#fcbf39d2c57ffd635b447c7932ae102d1654114b"
+  dependencies:
+    tslib "^1.7.1"
+
+"@ngxs/store@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ngxs/store/-/store-2.0.0.tgz#a656ee230b6987b4be1beb30d34ead934436ed69"
+  dependencies:
+    tslib "^1.7.1"
+
 "@types/bluebird@*":
   version "3.5.18"
   resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.18.tgz#6a60435d4663e290f3709898a4f75014f279c4d6"
@@ -3080,12 +3092,6 @@ ngrx-store-freeze@^0.2.1:
   resolved "https://registry.yarnpkg.com/ngrx-store-freeze/-/ngrx-store-freeze-0.2.1.tgz#04fb29db33cafda0f2d6ea32adeaac4891b1b27b"
   dependencies:
     deep-freeze-strict "^1.1.1"
-
-ngxs@^2.0.0-rc.18:
-  version "2.0.0-rc.18"
-  resolved "https://registry.yarnpkg.com/ngxs/-/ngxs-2.0.0-rc.18.tgz#6637f6f756266af2e443689f1cec7d257b8c87dd"
-  dependencies:
-    tslib "^1.7.1"
 
 no-case@^2.2.0:
   version "2.3.2"

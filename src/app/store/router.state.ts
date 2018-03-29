@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { NavigationExtras, Router } from '@angular/router';
-import { Action, State, StateContext } from 'ngxs';
+import { Action, State, StateContext } from '@ngxs/store';
 
 //------ router model -------
 export class RouterStateModel {

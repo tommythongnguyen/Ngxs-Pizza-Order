@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Route, RouterModule } from '@angular/router';
-import { NgxsModule } from 'ngxs';
+import { NgxsModule } from '@ngxs/store';
 
 import { PizzaDisplayComponent } from './components/pizza-display/pizza-display.component';
 import { PizzaFormComponent } from './components/pizza-form/pizza-form.component';

@@ -1,4 +1,4 @@
-import { Action, Selector, State, StateContext } from 'ngxs';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { of } from 'rxjs/observable/of';
 import { catchError, map } from 'rxjs/operators';
 
