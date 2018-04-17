@@ -2,5 +2,8 @@ import { PizzasState } from './pizzas.state';
 import { ToppingsState } from './toppings.state';
 
 export const ProductsState = [PizzasState, ToppingsState];
-export { PizzasState } from './pizzas.state';
-export { ToppingsState } from './toppings.state';
+
+export * from './pizzas.actions';
+export * from './pizzas.state';
+export * from './toppings.actions';
+export * from './toppings.state';

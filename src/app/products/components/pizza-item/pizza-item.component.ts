@@ -13,7 +13,7 @@ import {
   template: `
     <div class="pizza-item">
       <a [routerLink]="['/products', pizza.id]">
-        <pizza-display
+        <pizza-display 
           [pizza]="pizza">
         </pizza-display>
         <h4>{{ pizza.name }}</h4>

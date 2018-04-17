@@ -1,9 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs/Observable';
-
-import { Pizza } from './../../models/pizza.model';
-import { PizzasState } from './../../store/pizzas.state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'products',
@@ -19,7 +16,7 @@ import { PizzasState } from './../../store/pizzas.state';
         </div>
         <div class="products__list">
             <div *ngIf="!(pizzas$ | async)?.length">
-            No pizzas, add one to get started.
+                No pizzas, add one to get started (pizzas$ | async)
             </div>
             <pizza-item *ngFor="let pizza of (pizzas$ | async)" 
                         [pizza]="pizza">
@@ -28,7 +25,8 @@ import { PizzasState } from './../../store/pizzas.state';
     </div>`
 })
 export class ProductsComponent implements OnInit {
-  @Select(PizzasState.pizzas) pizzas$: Observable<Pizza[]>;
+  @Select((state: any) => state.pizzasState.pizzas)
+  pizzas$: Observable<any[]>;
   constructor(private store: Store) {}
 
   ngOnInit() {}

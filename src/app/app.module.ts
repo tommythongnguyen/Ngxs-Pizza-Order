@@ -5,9 +5,9 @@ import { Route, RouterModule } from '@angular/router';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsModule } from '@ngxs/store';
 
-import { environment } from '../environments/environment';
+import { environment } from './../environments/environment';
 import { AppComponent } from './app.component';
-import { RouterState } from './store/router.state';
+import { RouterHandler } from './store/router.state';
 
 // bootstrap
 // routes
@@ -19,17 +19,22 @@ export const ROUTES: Route[] = [
   }
 ];
 
+function noop() {
+  return function() {};
+}
+
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(ROUTES),
-    NgxsModule.forRoot([RouterState]),
+    NgxsModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot({
       disabled: environment.production
     })
   ],
   declarations: [AppComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [RouterHandler]
 })
 export class AppModule {}

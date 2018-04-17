@@ -1,89 +1,56 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { of } from 'rxjs/observable/of';
+import { asapScheduler, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { Topping } from '../models/topping.model';
-import { ToppingsService } from './../services/toppings.service';
+import { ToppingsService } from '../services/toppings.service';
+import { LoadToppings, LoadToppingsFail, LoadToppingsSuccess, VisualiseToppings } from './toppings.actions';
 
-// --- topping actions----
-export class LoadToppings {}
-
-export class LoadToppingsSuccess {
-  constructor(public readonly payload: Topping[]) {}
-}
-
-export class LoadToppingsFail {
-  constructor(public readonly payload?: any) {}
-}
-
-export class VisualiseToppings {
-  constructor(public readonly payload: number[]) {}
-}
-
-// ---topping model----
-export class ToppingsStateModel {
+export interface ToppingsStateModel {
   toppings: Topping[];
-  selectedToppings: number[];
+  selectedToppingIds: number[];
   loaded: boolean;
   loading: boolean;
 }
-// --- topping state : initialState---
+
 @State<ToppingsStateModel>({
-  name: 'toppings',
+  name: 'toppingsState',
   defaults: {
     toppings: [],
-    selectedToppings: [],
+    selectedToppingIds: [],
     loaded: false,
     loading: false
   }
 })
 export class ToppingsState {
   constructor(private toppingsSerive: ToppingsService) {}
-  // state selector
+
   @Selector()
-  static toppings(state: ToppingsStateModel) {
+  static toppings(state: ToppingsStateModel): Topping[] {
     return state.toppings;
   }
-  @Selector()
-  static loaded(state: ToppingsStateModel) {
-    return state.loaded;
-  }
-  @Selector()
-  static loading(state: ToppingsStateModel) {
-    return state.loading;
-  }
-  @Selector()
-  static selectedToppings(state: ToppingsStateModel) {
-    return state.selectedToppings;
-  }
-
   // load Toppings
   @Action(LoadToppings)
-  loadToppings(sc: StateContext<ToppingsStateModel>) {
-    sc.patchState({ loading: true });
+  loadToppings({ patchState, dispatch }: StateContext<ToppingsStateModel>) {
+    patchState({ loading: true });
     return this.toppingsSerive.getToppings().pipe(
       map((toppings: Topping[]) => {
-        setTimeout(() => {
-          sc.dispatch(new LoadToppingsSuccess(toppings));
-        }, 0);
+        asapScheduler.schedule(() =>
+          dispatch(new LoadToppingsSuccess(toppings))
+        );
       }),
       catchError(err =>
-        of(
-          setTimeout(() => {
-            sc.dispatch(new LoadToppingsFail());
-          }, 0)
-        )
+        of(asapScheduler.schedule(() => dispatch(new LoadToppingsFail())))
       )
     );
   }
 
   @Action(LoadToppingsSuccess)
   loadToppingSuccess(
-    sc: StateContext<ToppingsStateModel>,
+    { patchState }: StateContext<ToppingsStateModel>,
     action: LoadToppingsSuccess
   ) {
-    sc.setState({
-      ...sc.getState(),
+    patchState({
       toppings: action.payload,
       loaded: true,
       loading: false
@@ -91,16 +58,16 @@ export class ToppingsState {
   }
 
   @Action(LoadToppingsFail)
-  loadToppingsFail(sc: StateContext<ToppingsStateModel>) {
-    sc.patchState({ loading: false, loaded: false });
+  loadToppingsFail({ patchState }: StateContext<ToppingsStateModel>) {
+    patchState({ loading: false, loaded: false });
   }
 
   // ----visualise toppings -------
   @Action(VisualiseToppings)
   visualiseToppings(
-    sc: StateContext<ToppingsStateModel>,
+    { patchState }: StateContext<ToppingsStateModel>,
     action: VisualiseToppings
   ) {
-    sc.patchState({ selectedToppings: action.payload });
+    patchState({ selectedToppingIds: action.payload });
   }
 }

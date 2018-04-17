@@ -11,24 +11,25 @@ import { PizzaItemComponent } from './components/pizza-item/pizza-item.component
 import { PizzaToppingsComponent } from './components/pizza-toppings/pizza-toppings.component';
 import { ProductItemComponent } from './containers/product-item/product-item.component';
 import { ProductsComponent } from './containers/products/products.component';
-import * as fromGuards from './guards';
-import { PizzasService, ToppingsService } from './services';
+import { PizzaExistsGuards, PizzasGuard, ToppingsGuard } from './guards';
+import { PizzasService } from './services/pizzas.service';
+import { ToppingsService } from './services/toppings.service';
 import { ProductsState } from './store';
 
 const ROUTES: Route[] = [
   {
     path: '',
-    canActivate: [fromGuards.PizzasGuard],
+    canActivate: [PizzasGuard],
     component: ProductsComponent
   },
   {
     path: 'new',
-    canActivate: [fromGuards.ToppingsGuard, fromGuards.VisualizeToppingsGuard],
+    canActivate: [ToppingsGuard],
     component: ProductItemComponent
   },
   {
     path: ':pizzaId',
-    canActivate: [fromGuards.PizzaExistsGuards, fromGuards.ToppingsGuard],
+    canActivate: [PizzaExistsGuards, ToppingsGuard],
     component: ProductItemComponent
   }
 ];
@@ -37,9 +38,9 @@ const ROUTES: Route[] = [
     ProductsComponent,
     PizzaItemComponent,
     PizzaDisplayComponent,
+    ProductItemComponent,
     PizzaFormComponent,
-    PizzaToppingsComponent,
-    ProductItemComponent
+    PizzaToppingsComponent
   ],
   imports: [
     CommonModule,
@@ -48,6 +49,12 @@ const ROUTES: Route[] = [
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [PizzasService, ToppingsService, fromGuards.guards]
+  providers: [
+    PizzasService,
+    ToppingsService,
+    PizzasGuard,
+    ToppingsGuard,
+    PizzaExistsGuards
+  ]
 })
 export class ProductsModule {}
