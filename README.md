@@ -6,6 +6,8 @@ NGXS: Angular State Management
 
 <ul align="center">
   <li>Angular 6</li>
+  <li>rxjs 6</li>
+  <li>ngxs 3</li>
 </ul>
 
 ---
