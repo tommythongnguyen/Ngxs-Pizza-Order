@@ -4,6 +4,10 @@ NGXS: Angular State Management
 </h1>
 <h4 align="center">Ngxs for Angular ( origional :NGRX application using Angular, NGRX Store, Effects, Router Store).</h4>
 
+<ul align="center">
+  <li>Angular 6</li>
+</ul>
+
 ---
 
 <a href="https://ultimateangular.com" target="_blank"><img src="https://ultimateangular.com/assets/img/banner.jpg"></a>
